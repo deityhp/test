@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup
  from wxpy import * 
 import requests
- import re import time 
+ import re 
+import time 
 url = 'http://195.87.2.30/list_27.xhtml'
  headers = { 
     'User-Agent':'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E)', 
