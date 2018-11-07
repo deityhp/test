@@ -29,7 +29,11 @@ def get_pdf(url,data=None): 
         #  my_friend.send_file('e:/pdf/1.pdf') 
         print(time.asctime( time.localtime(time.time()) )+'无新文件') 
         #print(str(int(filename[1]) + 1)) 
-        time.sleep(900) 
+        hour = time.localtime().tm_hour 
+        if hour > 22: 
+            time.sleep(36000)
+         else: 
+            time.sleep(900)
     else: 
         f_num = int(filename[1]) - int(w_num) 
     while not f_num == 0: 
