@@ -28,3 +28,4 @@ time.sleep(3)
 info = find_inf().text
 str_info = re.findall(r'\d+\.?\d*',info)
 print(float(str_info[0]))
+drive.close(）
