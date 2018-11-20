@@ -2,10 +2,9 @@ from bs4 import BeautifulSoup
 import requests
 import pymongo
 url = "https://bj.xiaozhu.com/"
-
+client = pymongo.MongoClient('localhost', 27017)
+xiaozhu = client['xiaozhu']
 def save (data):
-    client = pymongo.MongoClient('localhost',27017)
-    xiaozhu =client['xiaozhu']
     line_data = xiaozhu['line_data']
     line_data.insert_one(data)
 
@@ -21,6 +20,5 @@ def spider (url):
         }
         save(data)
        # print(data)
-
-spider(url)
-
+line_data = xiaozhu['line_data']
+print(line_data.count())
