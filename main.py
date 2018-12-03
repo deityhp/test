@@ -19,4 +19,25 @@
 
 from bs4 import BeautifulSoup
 import requests
-url ='http://mp.weixin.qq.com/mp/jsreport?1=1&key=2&content=biz:MzA5NTQ0MTEyNw==,mid:2652180661,uin:777[key2]ajax_err&r=0.18012391988602539'
+import time
+url = 'https://www.qipamaijia.com/index/'
+
+def get_img(url):
+    wb_data = requests.get(url)
+    soup = BeautifulSoup(wb_data.text,'lxml')
+    imgs = soup.select( 'div.block > div.thumb > a > img')
+    for img in zip(imgs):
+        src = img[0].get('src')
+        name = src[-9:]
+        save_img(src,name)
+        print(time.asctime( time.localtime(time.time()) )+ name + '保存完成')
+
+
+def save_img(src,name):
+    html = requests.get(src)
+    with open('img/'+name, 'wb') as file:
+        file.write(html.content)
+z = range(1,101)
+for n in z:
+    get_img(url+str(n))
+
