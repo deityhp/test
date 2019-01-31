@@ -20,24 +20,31 @@
 from bs4 import BeautifulSoup
 import requests
 import time
-url = 'https://www.qipamaijia.com/index/'
+# url = 'https://www.qipamaijia.com/index/'
 
-def get_img(url):
-    wb_data = requests.get(url)
-    soup = BeautifulSoup(wb_data.text,'lxml')
-    imgs = soup.select( 'div.block > div.thumb > a > img')
-    for img in zip(imgs):
-        src = img[0].get('src')
-        name = src[-9:]
-        save_img(src,name)
-        print(time.asctime( time.localtime(time.time()) )+ name + '保存完成')
+# def get_img(url):
+#     wb_data = requests.get(url)
+#     soup = BeautifulSoup(wb_data.text,'lxml')
+#     imgs = soup.select( 'div.block > div.thumb > a > img')
+#     for img in zip(imgs):
+#         src = img[0].get('src')
+#         name = src[-9:]
+#         save_img(src,name)
+#         print(time.asctime( time.localtime(time.time()) )+ name + '保存完成')
+
+txtpath = r"urls_porn.txt"
+fp = open(txtpath)
+arr = []
+for lines in fp.readlines():
+    lines = lines.strip('\n')
+    arr.append(lines)
+fp.close()
 
 
 def save_img(src,name):
     html = requests.get(src)
+    print(html)
     with open('img/'+name, 'wb') as file:
         file.write(html.content)
-z = range(1,101)
-for n in z:
-    get_img(url+str(n))
-
+for n in arr:
+    print(n)
