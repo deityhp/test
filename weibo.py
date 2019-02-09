@@ -12,8 +12,14 @@
 from selenium import webdriver
 import time
 import re
+txtpath = r"urls_porn.txt"
+fp = open(txtpath)
+arr = []
+for lines in fp.readlines():
+    lines = lines.strip('\n')
+    arr.append(lines)
+fp.close()
 
-url ='https://s.weibo.com/weibo/%23%E5%A5%A5%E6%96%AF%E5%8D%A1%23?topnav=1&wvr=6&topsug=1'
 def open_web():
     drive = webdriver.Chrome(executable_path= './chromedriver')
     drive.start_client()
@@ -23,9 +29,12 @@ def find_inf():
     return info
 
 drive = open_web()
-drive.get(url)
-time.sleep(3)
-info = find_inf().text
-str_info = re.findall(r'\d+\.?\d*',info)
-print(float(str_info[0]))
-drive.close(）
+for n in arr :
+    name = n[-9:]
+    drive.get(n)
+    drive.save_screenshot('img1/'+name)
+
+# info = find_inf().text
+# str_info = re.findall(r'\d+\.?\d*',info)
+# print(float(str_info[0]))
+# drive.close(）
