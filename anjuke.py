@@ -32,26 +32,57 @@ def spider_2(url):
             '链接': href.get('href'),
         }
 
-        csvfile = open("test.csv", "a")
-        fieldnames = ['小区','总价','单价','详细','标题','链接']
-        writer = csv.DictWriter(csvfile,fieldnames = fieldnames)
-        # 先写入columns_name
-        writer.writerow(data)
-        csvfile.close()
+        # csvfile = open("test.csv", "a")
+        # fieldnames = ['小区','总价','单价','详细','标题','链接']
+        # writer = csv.DictWriter(csvfile,fieldnames = fieldnames)
+        # # 先写入columns_name
+        # writer.writerow(data)
+        # csvfile.close()
         print(data)
 
 
 # 循环，把第2-100页全部爬下来
-page = 1
+# page = 1
+#
+# while page < 200 :
+#     #url = 'http://esf.km.fang.com/house/i3'+str(page+1)
+#     #url = 'http://esf.km.fang.com/house/t21-h316-i3'+str(page+1)
+#     url = 'https://km.anjuke.com/sale/d119-o5-p'+str(page+1) +'/?from_price=80&to_price=200&from_area=80&to_area=150'
+#     spider_2(url)
+#     time.sleep(5)
+#     page = page + 1
+#     print(page)
+url = 'https://km.anjuke.com/prop/view/A1501934352?from=filter&spread=commsearch_p&position=1&kwtype=filter&now_time=1543709456'
 
-while page < 200 :
-    #url = 'http://esf.km.fang.com/house/i3'+str(page+1)
-    #url = 'http://esf.km.fang.com/house/t21-h316-i3'+str(page+1)
-    url = 'https://km.anjuke.com/sale/d119-o5-p'+str(page+1) +'/?from_price=80&to_price=200&from_area=80&to_area=150'
-    spider_2(url)
-    time.sleep(5)
-    page = page + 1
-    print(page)
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36'
+}
+def get_xinxi(url):
+    wb_data = requests.get(url,headers = headers)
+    soup = BeautifulSoup(wb_data.text,'lxml')
+    courts = soup.select('div.houseInfo-content > a')
+    adds = soup.select('div.houseInfo-content > p')
+    prices = soup.select('span.light.info-tag > em')
+
+    years = soup.select('div.houseInfo-wrap > ul > li:nth-child(7) > div.houseInfo-content')
+    titles = soup.select('div.clearfix.title-guarantee > h3')
+    print(soup)
+    # for court,add,price,danjia,year,title in zip(courts,adds,prices,danjias,years,titles):
+    #    data = {
+    #        'xiaoqu'：court,
+    #        'add': add,
+    #        'price': price,
+    #        'danjia': danjia,
+    #        'year': year,
+    #        'title': title,
+    #    }
+    #    print(data)
+
+get_xinxi(url)
+
+
+
+
 
 
 
