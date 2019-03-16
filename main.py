@@ -31,7 +31,7 @@ import time
 #         name = src[-9:]
 #         save_img(src,name)
 #         print(time.asctime( time.localtime(time.time()) )+ name + '保存完成')
-
+#下载小图片
 txtpath = r"urls_porn.txt"
 fp = open(txtpath)
 arr = []
@@ -44,7 +44,10 @@ fp.close()
 def save_img(src,name):
     html = requests.get(src)
     print(html)
-    with open('img/'+name, 'wb') as file:
+    with open('img2/'+name, 'wb') as file:
         file.write(html.content)
 for n in arr:
     print(n)
+    name = n[-9:]
+    save_img(n,name)
+    print("已下载"+name)

@@ -34,6 +34,7 @@ for n in arr :
     drive.get(n)
     drive.save_screenshot('img1/'+name)
 
+
 # info = find_inf().text
 # str_info = re.findall(r'\d+\.?\d*',info)
 # print(float(str_info[0]))
