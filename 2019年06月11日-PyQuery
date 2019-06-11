@@ -1,0 +1,17 @@
+import requests
+from bs4 import BeautifulSoup
+url ="https://psiupuxa.com/pages/"
+def save_img(src,name):
+    html = requests.get(src)
+    print(html)
+    with open('img2/'+name, 'wb') as file:
+        file.write(html.content)
+for i in range(1,11):
+    re = requests.get(url+str(i))
+    html = BeautifulSoup(re.text,'lxml')
+    srcs = html.select('.post-preview')
+    for src in srcs:
+        href =  src.get('src')
+        name = href[-16:]
+        save_img(href,name)
+
