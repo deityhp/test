@@ -11,7 +11,7 @@ for i in range(1,11):
     html = BeautifulSoup(re.text,'lxml')
     srcs = html.select('.post-preview')
     for src in srcs:
-        href =  src.get('src')
+        href = src.get('src')
         name = href[-16:]
         save_img(href,name)
 
