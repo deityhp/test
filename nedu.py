@@ -3,9 +3,10 @@ from bs4 import BeautifulSoup
 import requests
 url = "https://nexam.cmbc.com.cn/wis18/userpaper.viewuserhispaperqueslist.flow"
 #需要更改变量
-cookie = 'SESSION_CLIENT_DEVICE_KEY=e4e16518-59d0-4a1d-868c-73f6e09815bd; JSESSIONID=gj_P8RBN8bP3t2ywmC7vzITnBaZnLq4XxPr7vIQewTieCfMsjW6k!1426389675; BIGipServerMOEDU_zaixiankaoshixitong_app_7080_pool=!/ivgagJrtBAIw8TE+DPp2e8pdv2HlSo2P7p1wk+CbiATIXGdQd0cjRy/hrZouhBAM4mhNb7xPpatNA=='
-p_id = '6286099897724567'
-filename = ''
+cookie = 'SESSION_CLIENT_DEVICE_KEY=e4e16518-59d0-4a1d-868c-73f6e09815bd; JSESSIONID=S8FcmNGuRWayyQ6mC4QndIfNyt-T0EheA7HwCsV_tb0iZ9x_dwYv!1063274141; BIGipServerMOEDU_zaixiankaoshixitong_app_7080_pool=!qMOF+7DtnpufK9YKUjg3xVOawHfj+CnmHXuGfEb/Hv49VeanUXcXgJesHNRMHmJD7Tu8r2TKnOELwA=='
+p_id = '6348387278664823'
+filename = '/Users/hp/Desktop/denglili-202002.txt'
+
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36',
