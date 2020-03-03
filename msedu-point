@@ -35,7 +35,7 @@ def auto_study():
                         driver.close()
                         driver.switch_to.window(windows)
                         print("此门课程无法学习")
-                    time.sleep(3)
+                    time.sleep(2)
                     titles = driver.find_elements_by_xpath('//*[@id="contentList"]/div/div/div/div[2]/div[2]/table/tbody/tr/td[2]/div')
                     i = len(titles) + 1
                     print('此课程共有' + str(i) + '项学习内容')
@@ -56,15 +56,18 @@ def auto_study():
                             print('此课程已学习')
                             break
                 driver.switch_to.window(windows)
-    print("已打开所有需学习窗口，等待15分钟")
+            break
+    print(str(time.time())+"已打开所有需学习窗口，等待15分钟")
     time.sleep(60)
-    print('学习已完成，正在关闭学习窗口')
-    #关闭打开的学习窗口
-    for window in list_windows:
-        driver.switch_to.window(window)
-        driver.close()
-        time.sleep(0.5)
-    print("全部学习窗口已关闭")
+
+    print('学习已完成，请关闭学习窗口后输入Y')
+    # #关闭打开的学习窗口
+    # for window in list_windows:
+    #     driver.switch_to.window(window)
+    #     time.sleep(0.5)
+    #     driver.close()
+    #     time.sleep(0.5)
+    input()
 #点击所有评估按钮
 def click_answer():
     lists_assess = driver.find_elements_by_xpath('//*[@id="subtask_resource"]/table/tbody/tr/td[6]/span/a')
@@ -149,6 +152,7 @@ driver.switch_to.window(windows)
 time.sleep(2)
 print("现在开始学习")
 auto_study()
+driver.switch_to.window(windows)
 driver.find_element_by_xpath('//*[@id="headUL"]/li[2]/a').click()
 time.sleep(2)
 driver.find_element_by_xpath('//*[@id="learningtaskfrom"]/div/div/div[2]/ul/li/div[1]/div[3]/span[1]').click()
