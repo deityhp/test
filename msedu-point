@@ -59,8 +59,7 @@ def auto_study():
             break
     print(str(time.time())+"已打开所有需学习窗口，等待15分钟")
     time.sleep(60)
-
-    print('学习已完成，请关闭学习窗口后输入Y')
+    print('请关闭学习窗口后输入Y')
     # #关闭打开的学习窗口
     # for window in list_windows:
     #     driver.switch_to.window(window)
@@ -68,6 +67,7 @@ def auto_study():
     #     driver.close()
     #     time.sleep(0.5)
     input()
+    print('课程学习已完成')
 #点击所有评估按钮
 def click_answer():
     lists_assess = driver.find_elements_by_xpath('//*[@id="subtask_resource"]/table/tbody/tr/td[6]/span/a')
@@ -147,6 +147,7 @@ time.sleep(2)
 driver.find_element_by_xpath('//*[@id="learningtaskfrom"]/div/div/div[2]/ul/li/div[1]/div[3]/span[1]').click()
 windows = driver.current_window_handle
 if point > 0 :
+    print("现在开始选课")
     select_point(point)
 driver.switch_to.window(windows)
 time.sleep(2)
