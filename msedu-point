@@ -57,7 +57,7 @@ def auto_study():
                             break
                 driver.switch_to.window(windows)
             break
-    print(str(time.time())+"已打开所有需学习窗口，等待15分钟")
+    print(str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))+"已打开所有需学习窗口，等待15分钟")
     time.sleep(60)
     print('请关闭学习窗口后输入Y')
     # #关闭打开的学习窗口
