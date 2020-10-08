@@ -43,14 +43,41 @@ url = "https://www.gaogulou.com/"
 # re = requests.get(url,headers=headers)
 # bs = BeautifulSoup(re.text,'lxml')
 # print(bs)
-def open_web():
-    drive = webdriver.Chrome(executable_path= './chromedriver')
-    drive.start_client()
-    return (drive)
-#打开浏览器，进入民生亿度
-driver = open_web()
-driver.get(url)
-list = driver.find_elements_by_xpath('//*[@id="portal_block_800_content"]/div/ul/li')
-list.
-for li in list:
-    print(li.text)
+
+# def open_web():
+#     drive = webdriver.Edge(executable_path= './msedgedriver')
+#     drive.start_client()
+#     return (drive)
+# #打开浏览器，进入民生亿度
+# driver = open_web()
+# driver.get(url)
+# list = driver.find_elements_by_xpath('//*[@id="portal_block_800_content"]/div/ul/li')
+#
+# for li in list:
+#     print(li.text)
+#2020年10月01日，获取电影天堂影片信息
+from bs4 import BeautifulSoup
+import  requests
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36 Edg/85.0.564.63',
+    'Cookie':'__cfduid=d547e16427f7065c0e2dc98ef95472c7f1601540734; _site_id_cookie=1; clientlanguage=zh_CN; Hm_lvt_2cbd5058f8e9b21482d607a1de31b5d0=1601540743,1601543200; Hm_lpvt_2cbd5058f8e9b21482d607a1de31b5d0=1601543200; JSESSIONID=F4EB40E1AC846DEBD36398D15C509C0C'
+}
+filename = filename = '/Users/hp/Desktop/dianying.txt'
+for i in range(1,101):
+    url = 'https://www.bd-film.cc/movies/index_'+str(i)+'.htm?wafcloud_antihack=1'
+    re = requests.get(url,headers = headers)
+    bs = BeautifulSoup(re.text,'lxml')
+    doubans = bs.select("li.list-item > div > span > span.list-douban")
+    names = bs.select("li.list-item > div > a")
+    hrefs = bs.select("li.list-item > div > a")
+
+    for name,douban,href in zip(names,doubans,hrefs):
+        data ={
+            '片名':name.get_text(),
+            '评分':douban.get_text(),
+            '链接':href.get('href'),
+        }
+        print(data)
+        f = open(filename, 'a')
+        f.write(str(data) + "\n")
+        f.close()

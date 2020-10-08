@@ -12,7 +12,7 @@ url = "https://nedu.cmbc.com.cn/"
 # bs = BeautifulSoup(re.text,'lxml')
 # print(bs)
 def open_web():
-    drive = webdriver.Chrome(executable_path= './chromedriver')
+    drive = webdriver.Edge(executable_path= './msedgedriver')
     drive.start_client()
     return (drive)
 #自动学习
